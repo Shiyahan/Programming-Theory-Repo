@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -42,11 +45,17 @@ public class GameManager : MonoBehaviour
     public GameObject QuenBlackPrefab;
     public GameObject KingWhitePrefab;
     public GameObject KingBlackPrefab;
+
+    public TextMeshProUGUI gameOverText;
+    public TextMeshProUGUI winnerText;
+    public Button btnRestart;
     private static float boardPositionSize = 0.25f;
 
     // variables to DEBUG
     public bool debugFlag = false;
     public int debugX, debugY;
+
+    public bool gameOver, winnerWhite;
 
     // Start is called before the first frame update
     void Start()
@@ -57,6 +66,24 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        gameOver = (GameObject.FindGameObjectsWithTag("King").Length == 1);
+        if (gameOver)
+        {
+            winnerWhite = ((GameObject.Find("KingWhite4")) != null);
+            if(winnerWhite)
+            {
+                winnerText.text = "White Won ...!!!";
+            }
+            else
+            {
+                winnerText.text = "Black Won ...!!!";
+            }
+            Debug.Log("---------------");
+            gameOverText.gameObject.SetActive(true);
+            winnerText.gameObject.SetActive(true);
+            btnRestart.gameObject.SetActive(true);
+        }
+
         if (resetAction)
         {
             ActionReset();
@@ -173,5 +200,10 @@ public class GameManager : MonoBehaviour
                 RingSetInactive(i, j);
             }
         }
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(0);
     }
 }

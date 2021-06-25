@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -3562213390671910556}
   m_Layer: 0
   m_Name: KingBlack
-  m_TagString: Untagged
+  m_TagString: King
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,3 +109,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 379884f5d19f5bd4f93a9451d386e2d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isWhite: 0
