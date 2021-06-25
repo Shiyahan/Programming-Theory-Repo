@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rock : Peice
+public class King : Peice
 {
     GameManager gameManager;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -26,8 +25,8 @@ public class Rock : Peice
     void Update()
     {
         if ((gameManager.actionCompleted)
-                           && (gameManager.peiceSelectedName == gameObject.name)
-                           && (gameManager.peiceSelectedType == "Rock"))
+                                   && (gameManager.peiceSelectedName == gameObject.name)
+                                   && (gameManager.peiceSelectedType == "King"))
         {
             ActionCarryOut(gameManager, gameObject, posX, posY);
             posX = gameManager.peiceMoveToPosX;
@@ -39,65 +38,31 @@ public class Rock : Peice
     {
         int x = posX;
         int y = posY;
-        x++;
-        while ((x < 8) && (gameManager.gameBoardSet[x, y] == null))
-        {
-            if (gameManager.gameBoardSet[x, y] == null)
-            {
-                gameManager.gameBoardMove[x, y].SetActive(boolValue);
-                x++;
-            }
-        }
-        PossibleTake(x, y, boolValue);
-
-        x = posX;
-        y = posY;
-        x--;
-        while ((x > -1) && (gameManager.gameBoardSet[x, y] == null))
-        {
-            if (gameManager.gameBoardSet[x, y] == null)
-            {
-                gameManager.gameBoardMove[x, y].SetActive(boolValue);
-                x--;
-            }
-        }
-        PossibleTake(x, y, boolValue);
-
-        x = posX;
-        y = posY;
-        y++;
-        while ((y < 8) && (gameManager.gameBoardSet[x, y] == null))
-        {
-            if (gameManager.gameBoardSet[x, y] == null)
-            {
-                gameManager.gameBoardMove[x, y].SetActive(boolValue);
-                y++;
-            }
-        }
-        PossibleTake(x, y, boolValue);
-
-        x = posX;
-        y = posY;
-        y--;
-        while ((y > -1) && (gameManager.gameBoardSet[x, y] == null))
-        {
-            if (gameManager.gameBoardSet[x, y] == null)
-            {
-                gameManager.gameBoardMove[x, y].SetActive(boolValue);
-                y--;
-            }
-        }
-        PossibleTake(x, y, boolValue);
+        PossibleTake(x, y - 1, boolValue);
+        PossibleTake(x, y + 1, boolValue);
+        PossibleTake(x - 1, y, boolValue);
+        PossibleTake(x + 1, y, boolValue);
+        PossibleTake(x + 1, y - 1, boolValue);
+        PossibleTake(x + 1, y + 1, boolValue);
+        PossibleTake(x - 1, y - 1, boolValue);
+        PossibleTake(x - 1, y + 1, boolValue);
     }
 
     private void PossibleTake(int x, int y, bool boolValue)
     {
-        if ((x != 8) && (x != -1) && (y != 8) && (y != -1))
+        Debug.Log("Before While Possible Take" + x + " " + y);
+        if ((x < 8) && (x > -1) && (y < 8) && (y > -1))
             if (gameManager.gameBoardSet[x, y] != null)
+            {
                 if ((isWhite != GameObject.Find(gameManager.gameBoardSet[x, y].name).GetComponent<Peice>().isWhite))
                 {
                     gameManager.gameBoardTake[x, y].SetActive(boolValue);
                 }
+            }
+            else
+            {
+                gameManager.gameBoardMove[x, y].SetActive(boolValue);
+            }
     }
 
     private void OnMouseEnter()
@@ -133,7 +98,7 @@ public class Rock : Peice
                 gameManager.peiceSelected = true;
                 gameManager.peiceToMovePosX = posX;
                 gameManager.peiceToMovePosY = posY;
-                gameManager.peiceSelectedType = "Rock";
+                gameManager.peiceSelectedType = "King";
                 gameManager.peiceSelectedName = gameObject.name;
             }
         }

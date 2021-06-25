@@ -29,36 +29,9 @@ public class Pawn : Peice
                     && (gameManager.peiceSelectedName == gameObject.name)
                     && (gameManager.peiceSelectedType == "Pawn"))
         {
-            switch (gameManager.actionToCarry)
-            {
-                case 1:
-                    gameManager.gameBoardSet[posX, posY] = null;
-                    posX = gameManager.peiceMoveToPosX;
-                    posY = gameManager.peiceMoveToPosY;
-                    gameManager.gameBoardSet[posX, posY] = gameObject;
-                    MoveTo(gameObject, posX, posY);
-                    gameManager.playerSwitch = true;
-                    gameManager.actionCompleted = false;
-                    gameManager.resetAction = true;
-                    break;
-                case 2:
-                    Debug.Log(gameManager.gameBoardSet[gameManager.peiceMoveToPosX, gameManager.peiceMoveToPosY].name);
-                    Destroy(gameManager.gameBoardSet[gameManager.peiceMoveToPosX, gameManager.peiceMoveToPosY]);
-                    gameManager.gameBoardSet[posX, posY] = null;
-                    Debug.Log("----" + posX + " " + posY);
-                    posX = gameManager.peiceMoveToPosX;
-                    posY = gameManager.peiceMoveToPosY;
-                    gameManager.gameBoardSet[posX, posY] = gameObject;
-                    MoveTo(gameObject, posX, posY);
-                    gameManager.playerSwitch = true;
-                    gameManager.actionCompleted = false;
-                    gameManager.resetAction = true;
-                    break;
-                default:
-                    Debug.Log(" Error action not programmed yet ----------");
-                    break;
-            }
-
+            ActionCarryOut(gameManager, gameObject, posX, posY);
+            posX = gameManager.peiceMoveToPosX;
+            posY = gameManager.peiceMoveToPosY;
         }
     }
 

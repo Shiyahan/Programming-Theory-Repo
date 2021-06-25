@@ -267,6 +267,14 @@ MonoBehaviour:
   pawnBlackPrefab: {fileID: 3260419527717833425, guid: 7e347afb75e083841a99ef8c7e7762a3, type: 3}
   rockWhitePrefab: {fileID: 2671660466457436261, guid: 6147747233363b4468013e2bdcab6c20, type: 3}
   rockBlackPrefab: {fileID: 6616659152034612190, guid: d672cebc28e67e148bfdbb4186285fc1, type: 3}
+  KnitWhitePrefab: {fileID: 1196011958626427882, guid: 24477f2d0a15b304193ca76717b0f516, type: 3}
+  KnitBlackPrefab: {fileID: 2065316007935043887, guid: 89fbbd9aa0b8cb640b3732b96e1cae17, type: 3}
+  BshpWhitePrefab: {fileID: 7486594507263690545, guid: db569f28decc412439414d717594eebc, type: 3}
+  BshpBlackPrefab: {fileID: 6333522775001925816, guid: 1ed2450180910614ca463fe4d2582f97, type: 3}
+  QuenWhitePrefab: {fileID: 7945329195927963246, guid: 11ef55cb73a123d44bebea99ec5b60a6, type: 3}
+  QuenBlackPrefab: {fileID: 5615185105572975706, guid: 49617a686298c9a448952ba156c1ff47, type: 3}
+  KingWhitePrefab: {fileID: 2597369464311367353, guid: 351802513320232448cb53b398825a93, type: 3}
+  KingBlackPrefab: {fileID: 9218327584517055497, guid: 067cac48a96e0314c981753ef26cc795, type: 3}
   debugFlag: 0
   debugX: 0
   debugY: 0

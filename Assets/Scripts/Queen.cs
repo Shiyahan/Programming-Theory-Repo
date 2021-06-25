@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rock : Peice
+public class Queen : Peice
 {
     GameManager gameManager;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -26,8 +25,8 @@ public class Rock : Peice
     void Update()
     {
         if ((gameManager.actionCompleted)
-                           && (gameManager.peiceSelectedName == gameObject.name)
-                           && (gameManager.peiceSelectedType == "Rock"))
+                                   && (gameManager.peiceSelectedName == gameObject.name)
+                                   && (gameManager.peiceSelectedType == "Quen"))
         {
             ActionCarryOut(gameManager, gameObject, posX, posY);
             posX = gameManager.peiceMoveToPosX;
@@ -40,6 +39,70 @@ public class Rock : Peice
         int x = posX;
         int y = posY;
         x++;
+        y++;
+        while ((x < 8) && (y < 8) && (gameManager.gameBoardSet[x, y] == null))
+        {
+            if (gameManager.gameBoardSet[x, y] == null)
+            {
+                gameManager.gameBoardMove[x, y].SetActive(boolValue);
+                x++;
+                y++;
+            }
+        }
+        PossibleTake(x, y, boolValue);
+
+        x = posX;
+        y = posY;
+        x--;
+        y++;
+        while ((x > -1) && (y < 8) && (gameManager.gameBoardSet[x, y] == null))
+        {
+            if (gameManager.gameBoardSet[x, y] == null)
+            {
+                gameManager.gameBoardMove[x, y].SetActive(boolValue);
+                x--;
+                y++;
+            }
+        }
+        PossibleTake(x, y, boolValue);
+
+        x = posX;
+        y = posY;
+        x++;
+        y--;
+        while ((x < 8) && (y > -1) && (gameManager.gameBoardSet[x, y] == null))
+        {
+            if (gameManager.gameBoardSet[x, y] == null)
+            {
+                gameManager.gameBoardMove[x, y].SetActive(boolValue);
+                x++;
+                y--;
+            }
+        }
+        PossibleTake(x, y, boolValue);
+
+        x = posX;
+        y = posY;
+        x--;
+        y--;
+        while ((x > -1) && (y > -1) && (gameManager.gameBoardSet[x, y] == null))
+        {
+            if (gameManager.gameBoardSet[x, y] == null)
+            {
+                gameManager.gameBoardMove[x, y].SetActive(boolValue);
+                x--;
+                y--;
+            }
+        }
+        PossibleTake(x, y, boolValue);
+    }
+
+    private void PossibleMovesandTakes1(bool boolValue)
+    {
+        int x = posX;
+        int y = posY;
+        x++;
+        Debug.Log("Before While" + x + " " + y);
         while ((x < 8) && (gameManager.gameBoardSet[x, y] == null))
         {
             if (gameManager.gameBoardSet[x, y] == null)
@@ -92,7 +155,8 @@ public class Rock : Peice
 
     private void PossibleTake(int x, int y, bool boolValue)
     {
-        if ((x != 8) && (x != -1) && (y != 8) && (y != -1))
+        Debug.Log("Before While Possible Take" + x + " " + y);
+        if ((x < 8) && (x > -1) && (y < 8) && (y > -1))
             if (gameManager.gameBoardSet[x, y] != null)
                 if ((isWhite != GameObject.Find(gameManager.gameBoardSet[x, y].name).GetComponent<Peice>().isWhite))
                 {
@@ -107,6 +171,7 @@ public class Rock : Peice
             if (gameManager.playerIsWhite == isWhite)
             {
                 PossibleMovesandTakes(true);
+                PossibleMovesandTakes1(true);
             }
         }
     }
@@ -118,6 +183,7 @@ public class Rock : Peice
             if (gameManager.playerIsWhite == isWhite)
             {
                 PossibleMovesandTakes(false);
+                PossibleMovesandTakes1(false);
             }
         }
     }
@@ -133,7 +199,7 @@ public class Rock : Peice
                 gameManager.peiceSelected = true;
                 gameManager.peiceToMovePosX = posX;
                 gameManager.peiceToMovePosY = posY;
-                gameManager.peiceSelectedType = "Rock";
+                gameManager.peiceSelectedType = "Quen";
                 gameManager.peiceSelectedName = gameObject.name;
             }
         }

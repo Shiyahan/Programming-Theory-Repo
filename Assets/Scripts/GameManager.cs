@@ -34,6 +34,14 @@ public class GameManager : MonoBehaviour
     public GameObject pawnBlackPrefab;
     public GameObject rockWhitePrefab;
     public GameObject rockBlackPrefab;
+    public GameObject KnitWhitePrefab;
+    public GameObject KnitBlackPrefab;
+    public GameObject BshpWhitePrefab;
+    public GameObject BshpBlackPrefab;
+    public GameObject QuenWhitePrefab;
+    public GameObject QuenBlackPrefab;
+    public GameObject KingWhitePrefab;
+    public GameObject KingBlackPrefab;
     private static float boardPositionSize = 0.25f;
 
     // variables to DEBUG
@@ -112,6 +120,38 @@ public class GameManager : MonoBehaviour
         gameBoardSet[0, 7].name = "RockBlack0";
         gameBoardSet[7, 7] = Instantiate(rockBlackPrefab, new Vector3(BoardPosition(7), 0, BoardPosition(7)), Quaternion.Euler(new Vector3(-90, 0, 0)));
         gameBoardSet[7, 7].name = "RockBlack7";
+
+        //Instantiate Knights
+        gameBoardSet[1, 0] = Instantiate(KnitWhitePrefab, new Vector3(BoardPosition(1), 0, BoardPosition(0)), Quaternion.Euler(new Vector3(-90, 0, 0)));
+        gameBoardSet[1, 0].name = "KnitWhite1";
+        gameBoardSet[6, 0] = Instantiate(KnitWhitePrefab, new Vector3(BoardPosition(6), 0, BoardPosition(0)), Quaternion.Euler(new Vector3(-90, 0, 0)));
+        gameBoardSet[6, 0].name = "KnitWhite6";
+        gameBoardSet[1, 7] = Instantiate(KnitBlackPrefab, new Vector3(BoardPosition(1), 0, BoardPosition(7)), Quaternion.Euler(new Vector3(-90, 0, 180)));
+        gameBoardSet[1, 7].name = "KnitBlack1";
+        gameBoardSet[6, 7] = Instantiate(KnitBlackPrefab, new Vector3(BoardPosition(6), 0, BoardPosition(7)), Quaternion.Euler(new Vector3(-90, 0, 180)));
+        gameBoardSet[6, 7].name = "KnitBlack6";
+
+        //Instantiate Bishops
+        gameBoardSet[2, 0] = Instantiate(BshpWhitePrefab, new Vector3(BoardPosition(2), 0, BoardPosition(0)), Quaternion.Euler(new Vector3(-90, 0, 0)));
+        gameBoardSet[2, 0].name = "BshpWhite2";
+        gameBoardSet[5, 0] = Instantiate(BshpWhitePrefab, new Vector3(BoardPosition(5), 0, BoardPosition(0)), Quaternion.Euler(new Vector3(-90, 0, 0)));
+        gameBoardSet[5, 0].name = "BshpWhite5";
+        gameBoardSet[2, 7] = Instantiate(BshpBlackPrefab, new Vector3(BoardPosition(2), 0, BoardPosition(7)), Quaternion.Euler(new Vector3(-90, 0, 180)));
+        gameBoardSet[2, 7].name = "BshpBlack2";
+        gameBoardSet[5, 7] = Instantiate(BshpBlackPrefab, new Vector3(BoardPosition(5), 0, BoardPosition(7)), Quaternion.Euler(new Vector3(-90, 0, 180)));
+        gameBoardSet[5, 7].name = "BshpBlack5";
+
+        //Instantiate Queens
+        gameBoardSet[3, 0] = Instantiate(QuenWhitePrefab, new Vector3(BoardPosition(3), 0, BoardPosition(0)), Quaternion.Euler(new Vector3(-90, 0, 0)));
+        gameBoardSet[3, 0].name = "QuenWhite3";
+        gameBoardSet[3, 7] = Instantiate(QuenBlackPrefab, new Vector3(BoardPosition(3), 0, BoardPosition(7)), Quaternion.Euler(new Vector3(-90, 0, 180)));
+        gameBoardSet[3, 7].name = "QuenBlack3";
+
+        //Instantiate Kings
+        gameBoardSet[4, 0] = Instantiate(KingWhitePrefab, new Vector3(BoardPosition(4), 0, BoardPosition(0)), Quaternion.Euler(new Vector3(-90, 0, 0)));
+        gameBoardSet[4, 0].name = "KingWhite4";
+        gameBoardSet[4, 7] = Instantiate(KingBlackPrefab, new Vector3(BoardPosition(4), 0, BoardPosition(7)), Quaternion.Euler(new Vector3(-90, 0, 180)));
+        gameBoardSet[4, 7].name = "kingBlack4";
     }
 
     private void ActionReset()
