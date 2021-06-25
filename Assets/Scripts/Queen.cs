@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Queen : Peice
+public class Queen : Piece
 {
     GameManager gameManager;
     // Start is called before the first frame update
@@ -25,12 +25,12 @@ public class Queen : Peice
     void Update()
     {
         if ((gameManager.actionCompleted)
-                                   && (gameManager.peiceSelectedName == gameObject.name)
-                                   && (gameManager.peiceSelectedType == "Quen"))
+                                   && (gameManager.pieceSelectedName == gameObject.name)
+                                   && (gameManager.pieceSelectedType == "Quen"))
         {
             ActionCarryOut(gameManager, gameObject, posX, posY);
-            posX = gameManager.peiceMoveToPosX;
-            posY = gameManager.peiceMoveToPosY;
+            posX = gameManager.pieceMoveToPosX;
+            posY = gameManager.pieceMoveToPosY;
         }
     }
 
@@ -158,7 +158,7 @@ public class Queen : Peice
         Debug.Log("Before While Possible Take" + x + " " + y);
         if ((x < 8) && (x > -1) && (y < 8) && (y > -1))
             if (gameManager.gameBoardSet[x, y] != null)
-                if ((isWhite != GameObject.Find(gameManager.gameBoardSet[x, y].name).GetComponent<Peice>().isWhite))
+                if ((isWhite != GameObject.Find(gameManager.gameBoardSet[x, y].name).GetComponent<Piece>().isWhite))
                 {
                     gameManager.gameBoardTake[x, y].SetActive(boolValue);
                 }
@@ -166,7 +166,7 @@ public class Queen : Peice
 
     private void OnMouseEnter()
     {
-        if (!gameManager.peiceSelected)
+        if (!gameManager.pieceSelected)
         {
             if (gameManager.playerIsWhite == isWhite)
             {
@@ -178,7 +178,7 @@ public class Queen : Peice
 
     private void OnMouseExit()
     {
-        if (!gameManager.peiceSelected)
+        if (!gameManager.pieceSelected)
         {
             if (gameManager.playerIsWhite == isWhite)
             {
@@ -190,17 +190,17 @@ public class Queen : Peice
 
     private void OnMouseDown()
     {
-        if (!gameManager.peiceSelected)
+        if (!gameManager.pieceSelected)
         {
-            if (!gameManager.peiceSelected)
+            if (!gameManager.pieceSelected)
             {
                 gameManager.gameBoardSelect[posX, posY].SetActive(true);
                 PossibleMovesandTakes(true);
-                gameManager.peiceSelected = true;
-                gameManager.peiceToMovePosX = posX;
-                gameManager.peiceToMovePosY = posY;
-                gameManager.peiceSelectedType = "Quen";
-                gameManager.peiceSelectedName = gameObject.name;
+                gameManager.pieceSelected = true;
+                gameManager.pieceToMovePosX = posX;
+                gameManager.pieceToMovePosY = posY;
+                gameManager.pieceSelectedType = "Quen";
+                gameManager.pieceSelectedName = gameObject.name;
             }
         }
     }

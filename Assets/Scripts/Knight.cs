@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Knight : Peice
+public class Knight : Piece
 {
     GameManager gameManager;
     // Start is called before the first frame update
@@ -25,12 +25,12 @@ public class Knight : Peice
     void Update()
     {
         if ((gameManager.actionCompleted)
-                   && (gameManager.peiceSelectedName == gameObject.name)
-                   && (gameManager.peiceSelectedType == "knight"))
+                   && (gameManager.pieceSelectedName == gameObject.name)
+                   && (gameManager.pieceSelectedType == "knight"))
         {
             ActionCarryOut(gameManager, gameObject, posX, posY);
-            posX = gameManager.peiceMoveToPosX;
-            posY = gameManager.peiceMoveToPosY;
+            posX = gameManager.pieceMoveToPosX;
+            posY = gameManager.pieceMoveToPosY;
         }
     }
 
@@ -57,7 +57,7 @@ public class Knight : Peice
             }
             else
             {
-                if ((isWhite != GameObject.Find(gameManager.gameBoardSet[x, y].name).GetComponent<Peice>().isWhite))
+                if ((isWhite != GameObject.Find(gameManager.gameBoardSet[x, y].name).GetComponent<Piece>().isWhite))
                 {
                     gameManager.gameBoardTake[x, y].SetActive(boolValue);
                 }
@@ -66,7 +66,7 @@ public class Knight : Peice
 
     private void OnMouseEnter()
     {
-        if (!gameManager.peiceSelected)
+        if (!gameManager.pieceSelected)
         {
             if (gameManager.playerIsWhite == isWhite)
             {
@@ -77,7 +77,7 @@ public class Knight : Peice
 
     private void OnMouseExit()
     {
-        if (!gameManager.peiceSelected)
+        if (!gameManager.pieceSelected)
         {
             if (gameManager.playerIsWhite == isWhite)
             {
@@ -88,17 +88,17 @@ public class Knight : Peice
 
     private void OnMouseDown()
     {
-        if (!gameManager.peiceSelected)
+        if (!gameManager.pieceSelected)
         {
-            if (!gameManager.peiceSelected)
+            if (!gameManager.pieceSelected)
             {
                 gameManager.gameBoardSelect[posX, posY].SetActive(true);
                 PossibleMovesandTakes(true);
-                gameManager.peiceSelected = true;
-                gameManager.peiceToMovePosX = posX;
-                gameManager.peiceToMovePosY = posY;
-                gameManager.peiceSelectedType = "knight";
-                gameManager.peiceSelectedName = gameObject.name;
+                gameManager.pieceSelected = true;
+                gameManager.pieceToMovePosX = posX;
+                gameManager.pieceToMovePosY = posY;
+                gameManager.pieceSelectedType = "knight";
+                gameManager.pieceSelectedName = gameObject.name;
             }
         }
     }

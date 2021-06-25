@@ -15,14 +15,14 @@ public class GameManager : MonoBehaviour
     public bool playerSwitch = false;
 
     // variables for actions
-    public bool peiceSelected = false;
-    public string peiceSelectedName;
-    public string peiceSelectedType;
-    public int peiceToMovePosX;
-    public int peiceToMovePosY;
+    public bool pieceSelected = false;
+    public string pieceSelectedName;
+    public string pieceSelectedType;
+    public int pieceToMovePosX;
+    public int pieceToMovePosY;
     public int actionToCarry;
-    public int peiceMoveToPosX;
-    public int peiceMoveToPosY;
+    public int pieceMoveToPosX;
+    public int pieceMoveToPosY;
     public bool actionCompleted;
     public bool resetAction = false;
 
@@ -156,9 +156,9 @@ public class GameManager : MonoBehaviour
 
     private void ActionReset()
     {
-        peiceSelected = false;
-        peiceSelectedName = " ";
-        peiceSelectedType = " ";
+        pieceSelected = false;
+        pieceSelectedName = " ";
+        pieceSelectedType = " ";
         actionToCarry = 9;
         actionCompleted = false;
         resetRings();

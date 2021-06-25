@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Pawn : Peice
+public class Pawn : Piece
 {
     GameManager gameManager;
     // Start is called before the first frame update
@@ -26,12 +26,12 @@ public class Pawn : Peice
     void Update()
     {
         if ((gameManager.actionCompleted)
-                    && (gameManager.peiceSelectedName == gameObject.name)
-                    && (gameManager.peiceSelectedType == "Pawn"))
+                    && (gameManager.pieceSelectedName == gameObject.name)
+                    && (gameManager.pieceSelectedType == "Pawn"))
         {
             ActionCarryOut(gameManager, gameObject, posX, posY);
-            posX = gameManager.peiceMoveToPosX;
-            posY = gameManager.peiceMoveToPosY;
+            posX = gameManager.pieceMoveToPosX;
+            posY = gameManager.pieceMoveToPosY;
         }
     }
 
@@ -75,7 +75,7 @@ public class Pawn : Peice
             if (posX < 7)
             {
                 if ((gameManager.gameBoardSet[posX + 1, posY + 1] != null)
-                    && (isWhite != GameObject.Find(gameManager.gameBoardSet[posX + 1, posY + 1].name).GetComponent<Peice>().isWhite))
+                    && (isWhite != GameObject.Find(gameManager.gameBoardSet[posX + 1, posY + 1].name).GetComponent<Piece>().isWhite))
                 {
                     gameManager.gameBoardTake[posX + 1, posY + 1].SetActive(boolValue);
                 }
@@ -83,7 +83,7 @@ public class Pawn : Peice
             if (posX > 0)
             {
                 if ((gameManager.gameBoardSet[posX - 1, posY + 1] != null)
-                    && (isWhite != GameObject.Find(gameManager.gameBoardSet[posX - 1, posY + 1].name).GetComponent<Peice>().isWhite))
+                    && (isWhite != GameObject.Find(gameManager.gameBoardSet[posX - 1, posY + 1].name).GetComponent<Piece>().isWhite))
                 {
                     gameManager.gameBoardTake[posX - 1, posY + 1].SetActive(boolValue);
                 }
@@ -94,7 +94,7 @@ public class Pawn : Peice
             if (posX < 7)
             {
                 if ((gameManager.gameBoardSet[posX + 1, posY - 1] != null)
-                    && (isWhite != GameObject.Find(gameManager.gameBoardSet[posX + 1, posY - 1].name).GetComponent<Peice>().isWhite))
+                    && (isWhite != GameObject.Find(gameManager.gameBoardSet[posX + 1, posY - 1].name).GetComponent<Piece>().isWhite))
                 {
                     gameManager.gameBoardTake[posX + 1, posY - 1].SetActive(boolValue);
                 }
@@ -102,7 +102,7 @@ public class Pawn : Peice
             if (posX > 0)
             {
                 if ((gameManager.gameBoardSet[posX - 1, posY - 1] != null)
-                    && (isWhite != GameObject.Find(gameManager.gameBoardSet[posX - 1, posY - 1].name).GetComponent<Peice>().isWhite))
+                    && (isWhite != GameObject.Find(gameManager.gameBoardSet[posX - 1, posY - 1].name).GetComponent<Piece>().isWhite))
                 {
                     gameManager.gameBoardTake[posX - 1, posY - 1].SetActive(boolValue);
                 }
@@ -112,7 +112,7 @@ public class Pawn : Peice
 
     private void OnMouseEnter()
     {
-        if (!gameManager.peiceSelected)
+        if (!gameManager.pieceSelected)
         {
             if (gameManager.playerIsWhite == isWhite)
             {
@@ -124,7 +124,7 @@ public class Pawn : Peice
 
     private void OnMouseExit()
     {
-        if (!gameManager.peiceSelected)
+        if (!gameManager.pieceSelected)
         {
             if (gameManager.playerIsWhite == isWhite)
             {
@@ -136,18 +136,18 @@ public class Pawn : Peice
 
     private void OnMouseDown()
     {
-        if (!gameManager.peiceSelected)
+        if (!gameManager.pieceSelected)
         {
-            if (!gameManager.peiceSelected)
+            if (!gameManager.pieceSelected)
             {
                 gameManager.gameBoardSelect[posX, posY].SetActive(true);
                 PossibleMoves(true);
                 PossibleTakes(true);
-                gameManager.peiceSelected = true;
-                gameManager.peiceToMovePosX = posX;
-                gameManager.peiceToMovePosY = posY;
-                gameManager.peiceSelectedType = "Pawn";
-                gameManager.peiceSelectedName = gameObject.name;
+                gameManager.pieceSelected = true;
+                gameManager.pieceToMovePosX = posX;
+                gameManager.pieceToMovePosY = posY;
+                gameManager.pieceSelectedType = "Pawn";
+                gameManager.pieceSelectedName = gameObject.name;
             }
         }
     }

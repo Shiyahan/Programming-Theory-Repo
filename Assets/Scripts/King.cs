@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class King : Peice
+public class King : Piece
 {
     GameManager gameManager;
     // Start is called before the first frame update
@@ -25,12 +25,12 @@ public class King : Peice
     void Update()
     {
         if ((gameManager.actionCompleted)
-                                   && (gameManager.peiceSelectedName == gameObject.name)
-                                   && (gameManager.peiceSelectedType == "King"))
+                                   && (gameManager.pieceSelectedName == gameObject.name)
+                                   && (gameManager.pieceSelectedType == "King"))
         {
             ActionCarryOut(gameManager, gameObject, posX, posY);
-            posX = gameManager.peiceMoveToPosX;
-            posY = gameManager.peiceMoveToPosY;
+            posX = gameManager.pieceMoveToPosX;
+            posY = gameManager.pieceMoveToPosY;
         }
     }
 
@@ -54,7 +54,7 @@ public class King : Peice
         if ((x < 8) && (x > -1) && (y < 8) && (y > -1))
             if (gameManager.gameBoardSet[x, y] != null)
             {
-                if ((isWhite != GameObject.Find(gameManager.gameBoardSet[x, y].name).GetComponent<Peice>().isWhite))
+                if ((isWhite != GameObject.Find(gameManager.gameBoardSet[x, y].name).GetComponent<Piece>().isWhite))
                 {
                     gameManager.gameBoardTake[x, y].SetActive(boolValue);
                 }
@@ -67,7 +67,7 @@ public class King : Peice
 
     private void OnMouseEnter()
     {
-        if (!gameManager.peiceSelected)
+        if (!gameManager.pieceSelected)
         {
             if (gameManager.playerIsWhite == isWhite)
             {
@@ -78,7 +78,7 @@ public class King : Peice
 
     private void OnMouseExit()
     {
-        if (!gameManager.peiceSelected)
+        if (!gameManager.pieceSelected)
         {
             if (gameManager.playerIsWhite == isWhite)
             {
@@ -89,17 +89,17 @@ public class King : Peice
 
     private void OnMouseDown()
     {
-        if (!gameManager.peiceSelected)
+        if (!gameManager.pieceSelected)
         {
-            if (!gameManager.peiceSelected)
+            if (!gameManager.pieceSelected)
             {
                 gameManager.gameBoardSelect[posX, posY].SetActive(true);
                 PossibleMovesandTakes(true);
-                gameManager.peiceSelected = true;
-                gameManager.peiceToMovePosX = posX;
-                gameManager.peiceToMovePosY = posY;
-                gameManager.peiceSelectedType = "King";
-                gameManager.peiceSelectedName = gameObject.name;
+                gameManager.pieceSelected = true;
+                gameManager.pieceToMovePosX = posX;
+                gameManager.pieceToMovePosY = posY;
+                gameManager.pieceSelectedType = "King";
+                gameManager.pieceSelectedName = gameObject.name;
             }
         }
     }

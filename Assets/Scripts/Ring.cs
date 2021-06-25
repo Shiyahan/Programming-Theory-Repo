@@ -32,8 +32,8 @@ public class Ring : MonoBehaviour
 
     private void OnMouseDown()
     {
-        gameManager.peiceMoveToPosX = posX;
-        gameManager.peiceMoveToPosY = posY;
+        gameManager.pieceMoveToPosX = posX;
+        gameManager.pieceMoveToPosY = posY;
         gameManager.actionToCarry = ringType;
         gameManager.actionCompleted = true;
     }
