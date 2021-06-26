@@ -92,7 +92,7 @@ public class Rock : Piece
 
     private void PossibleTake(int x, int y, bool boolValue)
     {
-        if ((x != 8) && (x != -1) && (y != 8) && (y != -1))
+        if (PositionOnBoard2(x, y))
             if (gameManager.gameBoardSet[x, y] != null)
                 if ((isWhite != GameObject.Find(gameManager.gameBoardSet[x, y].name).GetComponent<Piece>().isWhite))
                 {

@@ -8,6 +8,7 @@ public class Piece : MonoBehaviour
     protected int posY;
     public bool isWhite;
     protected string pieceName;
+    protected bool hasMoved;
     private static float boardPositionSize = 0.25f;
     // Start is called before the first frame update
     void Start()
@@ -46,7 +47,6 @@ public class Piece : MonoBehaviour
                 gameManager.resetAction = true;
                 break;
             case 2:
-                Debug.Log(gameManager.gameBoardSet[gameManager.pieceMoveToPosX, gameManager.pieceMoveToPosY].name);
                 Destroy(gameManager.gameBoardSet[gameManager.pieceMoveToPosX, gameManager.pieceMoveToPosY]);
                 gameManager.gameBoardSet[posX, posY] = null;
                 Debug.Log("----" + posX + " " + posY);
@@ -62,5 +62,15 @@ public class Piece : MonoBehaviour
                 Debug.Log(" Error action not programmed yet ----------");
                 break;
         }
+    }
+
+    public static bool PositionOnBoard2(int x, int y)
+    {
+        return(PositionOnBoard1(x) && PositionOnBoard1(y));
+    }
+
+    public static bool PositionOnBoard1(int x)
+    {
+        return ((x>=0) && (x<=7));
     }
 }

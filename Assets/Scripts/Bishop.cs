@@ -40,7 +40,7 @@ public class Bishop : Piece
         int y = posY;
         x++;
         y++;
-        while ((x < 8) && (y < 8) && (gameManager.gameBoardSet[x, y] == null))
+        while (PositionOnBoard2(x, y) && (gameManager.gameBoardSet[x, y] == null))
         {
             if (gameManager.gameBoardSet[x, y] == null)
             {
@@ -55,7 +55,7 @@ public class Bishop : Piece
         y = posY;
         x--;
         y++;
-        while ((x > -1) && (y < 8) && (gameManager.gameBoardSet[x, y] == null))
+        while (PositionOnBoard2(x, y) && (gameManager.gameBoardSet[x, y] == null))
         {
             if (gameManager.gameBoardSet[x, y] == null)
             {
@@ -70,7 +70,7 @@ public class Bishop : Piece
         y = posY;
         x++;
         y--;
-        while ((x < 8) && (y > -1) && (gameManager.gameBoardSet[x, y] == null))
+        while (PositionOnBoard2(x, y) && (gameManager.gameBoardSet[x, y] == null))
         {
             if (gameManager.gameBoardSet[x, y] == null)
             {
@@ -85,7 +85,7 @@ public class Bishop : Piece
         y = posY;
         x--;
         y--;
-        while ((x > -1) && (y > -1) && (gameManager.gameBoardSet[x, y] == null))
+        while (PositionOnBoard2(x, y) && (gameManager.gameBoardSet[x, y] == null))
         {
             if (gameManager.gameBoardSet[x, y] == null)
             {
@@ -99,7 +99,7 @@ public class Bishop : Piece
 
     private void PossibleTake(int x, int y, bool boolValue)
     {
-        if ((x != 8) && (x != -1) && (y != 8) && (y != -1))
+        if (PositionOnBoard2(x, y))
             if (gameManager.gameBoardSet[x, y] != null)
                 if ((isWhite != GameObject.Find(gameManager.gameBoardSet[x, y].name).GetComponent<Piece>().isWhite))
                 {
