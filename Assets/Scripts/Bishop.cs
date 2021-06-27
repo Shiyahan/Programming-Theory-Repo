@@ -31,80 +31,16 @@ public class Bishop : Piece
             ActionCarryOut(gameManager, gameObject, posX, posY);
             posX = gameManager.pieceMoveToPosX;
             posY = gameManager.pieceMoveToPosY;
+            hasMoved = true;
         }
     }
 
     private void PossibleMovesandTakes(bool boolValue)
     {
-        int x = posX;
-        int y = posY;
-        x++;
-        y++;
-        while (PositionOnBoard2(x, y) && (gameManager.gameBoardSet[x, y] == null))
-        {
-            if (gameManager.gameBoardSet[x, y] == null)
-            {
-                gameManager.gameBoardMove[x, y].SetActive(boolValue);
-                x++;
-                y++;
-            }
-        }
-        PossibleTake(x, y, boolValue);
-
-        x = posX;
-        y = posY;
-        x--;
-        y++;
-        while (PositionOnBoard2(x, y) && (gameManager.gameBoardSet[x, y] == null))
-        {
-            if (gameManager.gameBoardSet[x, y] == null)
-            {
-                gameManager.gameBoardMove[x, y].SetActive(boolValue);
-                x--;
-                y++;
-            }
-        }
-        PossibleTake(x, y, boolValue);
-
-        x = posX;
-        y = posY;
-        x++;
-        y--;
-        while (PositionOnBoard2(x, y) && (gameManager.gameBoardSet[x, y] == null))
-        {
-            if (gameManager.gameBoardSet[x, y] == null)
-            {
-                gameManager.gameBoardMove[x, y].SetActive(boolValue);
-                x++;
-                y--;
-            }
-        }
-        PossibleTake(x, y, boolValue);
-
-        x = posX;
-        y = posY;
-        x--;
-        y--;
-        while (PositionOnBoard2(x, y) && (gameManager.gameBoardSet[x, y] == null))
-        {
-            if (gameManager.gameBoardSet[x, y] == null)
-            {
-                gameManager.gameBoardMove[x, y].SetActive(boolValue);
-                x--;
-                y--;
-            }
-        }
-        PossibleTake(x, y, boolValue);
-    }
-
-    private void PossibleTake(int x, int y, bool boolValue)
-    {
-        if (PositionOnBoard2(x, y))
-            if (gameManager.gameBoardSet[x, y] != null)
-                if ((isWhite != GameObject.Find(gameManager.gameBoardSet[x, y].name).GetComponent<Piece>().isWhite))
-                {
-                    gameManager.gameBoardTake[x, y].SetActive(boolValue);
-                }
+        PossibleMovesDirection(gameManager, gameObject, posX, posY, 1, 1, boolValue);
+        PossibleMovesDirection(gameManager, gameObject, posX, posY, -1, 1, boolValue);
+        PossibleMovesDirection(gameManager, gameObject, posX, posY, 1, -1, boolValue);
+        PossibleMovesDirection(gameManager, gameObject, posX, posY, -1, -1, boolValue);
     }
 
     private void OnMouseEnter()

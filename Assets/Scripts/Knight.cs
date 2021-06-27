@@ -31,6 +31,7 @@ public class Knight : Piece
             ActionCarryOut(gameManager, gameObject, posX, posY);
             posX = gameManager.pieceMoveToPosX;
             posY = gameManager.pieceMoveToPosY;
+            hasMoved = true;
         }
     }
 

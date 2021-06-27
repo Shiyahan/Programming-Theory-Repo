@@ -5,7 +5,6 @@ using UnityEngine;
 public class Rock : Piece
 {
     GameManager gameManager;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -32,72 +31,16 @@ public class Rock : Piece
             ActionCarryOut(gameManager, gameObject, posX, posY);
             posX = gameManager.pieceMoveToPosX;
             posY = gameManager.pieceMoveToPosY;
+            hasMoved = true;
         }
     }
 
     private void PossibleMovesandTakes(bool boolValue)
     {
-        int x = posX;
-        int y = posY;
-        x++;
-        while ((x < 8) && (gameManager.gameBoardSet[x, y] == null))
-        {
-            if (gameManager.gameBoardSet[x, y] == null)
-            {
-                gameManager.gameBoardMove[x, y].SetActive(boolValue);
-                x++;
-            }
-        }
-        PossibleTake(x, y, boolValue);
-
-        x = posX;
-        y = posY;
-        x--;
-        while ((x > -1) && (gameManager.gameBoardSet[x, y] == null))
-        {
-            if (gameManager.gameBoardSet[x, y] == null)
-            {
-                gameManager.gameBoardMove[x, y].SetActive(boolValue);
-                x--;
-            }
-        }
-        PossibleTake(x, y, boolValue);
-
-        x = posX;
-        y = posY;
-        y++;
-        while ((y < 8) && (gameManager.gameBoardSet[x, y] == null))
-        {
-            if (gameManager.gameBoardSet[x, y] == null)
-            {
-                gameManager.gameBoardMove[x, y].SetActive(boolValue);
-                y++;
-            }
-        }
-        PossibleTake(x, y, boolValue);
-
-        x = posX;
-        y = posY;
-        y--;
-        while ((y > -1) && (gameManager.gameBoardSet[x, y] == null))
-        {
-            if (gameManager.gameBoardSet[x, y] == null)
-            {
-                gameManager.gameBoardMove[x, y].SetActive(boolValue);
-                y--;
-            }
-        }
-        PossibleTake(x, y, boolValue);
-    }
-
-    private void PossibleTake(int x, int y, bool boolValue)
-    {
-        if (PositionOnBoard2(x, y))
-            if (gameManager.gameBoardSet[x, y] != null)
-                if ((isWhite != GameObject.Find(gameManager.gameBoardSet[x, y].name).GetComponent<Piece>().isWhite))
-                {
-                    gameManager.gameBoardTake[x, y].SetActive(boolValue);
-                }
+        PossibleMovesDirection(gameManager, gameObject, posX, posY, 1, 0, boolValue);
+        PossibleMovesDirection(gameManager, gameObject, posX, posY, -1, 0, boolValue);
+        PossibleMovesDirection(gameManager, gameObject, posX, posY, 0, 1, boolValue);
+        PossibleMovesDirection(gameManager, gameObject, posX, posY, 0, -1, boolValue);
     }
 
     private void OnMouseEnter()

@@ -5,6 +5,7 @@ using UnityEngine;
 public class King : Piece
 {
     GameManager gameManager;
+    private int castlingCoord;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +32,7 @@ public class King : Piece
             ActionCarryOut(gameManager, gameObject, posX, posY);
             posX = gameManager.pieceMoveToPosX;
             posY = gameManager.pieceMoveToPosY;
+            hasMoved = true;
         }
     }
 
@@ -50,7 +52,6 @@ public class King : Piece
 
     private void PossibleTake(int x, int y, bool boolValue)
     {
-        Debug.Log("Before While Possible Take" + x + " " + y);
         if ((x < 8) && (x > -1) && (y < 8) && (y > -1))
             if (gameManager.gameBoardSet[x, y] != null)
             {
@@ -65,6 +66,29 @@ public class King : Piece
             }
     }
 
+    private void possibleCastling(bool boolValue)
+    {
+        castlingCoord = 0;
+        if (!hasMoved)
+        {
+            Debug.Log(posX - 1);
+            if (posY == 7) castlingCoord = 1;
+            if ((!GameObject.Find(gameManager.gameBoardSet[posX, posY].name).GetComponent<Piece>().hasMoved) &&
+                (gameManager.gameBoardSet[posX - 1, posY] == null) &&
+                (gameManager.gameBoardSet[posX - 2, posY] == null) &&
+                (gameManager.gameBoardSet[posX - 3, posY] == null))
+            {
+                gameManager.gameBoardCastling[0, castlingCoord].SetActive(boolValue);
+            }
+            if ((!GameObject.Find(gameManager.gameBoardSet[posX, posY].name).GetComponent<Piece>().hasMoved) &&
+                (gameManager.gameBoardSet[posX + 1, posY] == null) &&
+                (gameManager.gameBoardSet[posX + 2, posY] == null))
+            {
+                gameManager.gameBoardCastling[1, castlingCoord].SetActive(boolValue);
+            }
+        }
+    }
+
     private void OnMouseEnter()
     {
         if (!gameManager.pieceSelected)
@@ -72,6 +96,7 @@ public class King : Piece
             if (gameManager.playerIsWhite == isWhite)
             {
                 PossibleMovesandTakes(true);
+                possibleCastling(true);
             }
         }
     }
@@ -83,6 +108,7 @@ public class King : Piece
             if (gameManager.playerIsWhite == isWhite)
             {
                 PossibleMovesandTakes(false);
+                possibleCastling(false);
             }
         }
     }
@@ -95,6 +121,7 @@ public class King : Piece
             {
                 gameManager.gameBoardSelect[posX, posY].SetActive(true);
                 PossibleMovesandTakes(true);
+                possibleCastling(true);
                 gameManager.pieceSelected = true;
                 gameManager.pieceToMovePosX = posX;
                 gameManager.pieceToMovePosY = posY;
