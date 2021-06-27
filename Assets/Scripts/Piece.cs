@@ -8,8 +8,9 @@ public class Piece : MonoBehaviour
     protected int posY;
     public bool isWhite;
     protected string pieceName;
-    protected bool hasMoved;
+    public bool hasMoved;
     private static float boardPositionSize = 0.25f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,7 +50,6 @@ public class Piece : MonoBehaviour
             case 2:
                 Destroy(gameManager.gameBoardSet[gameManager.pieceMoveToPosX, gameManager.pieceMoveToPosY]);
                 gameManager.gameBoardSet[posX, posY] = null;
-                Debug.Log("----" + posX + " " + posY);
                 posX = gameManager.pieceMoveToPosX;
                 posY = gameManager.pieceMoveToPosY;
                 gameManager.gameBoardSet[posX, posY] = gameObject;
@@ -57,6 +57,27 @@ public class Piece : MonoBehaviour
                 gameManager.playerSwitch = true;
                 gameManager.actionCompleted = false;
                 gameManager.resetAction = true;
+                break;
+            case 3:
+                gameManager.gameBoardSet[posX, posY] = null;
+                posX = gameManager.pieceMoveToPosX;
+                posY = gameManager.pieceMoveToPosY;
+                MoveTo(gameObject, posX, posY);
+                gameManager.actionToCarry = 1;
+                gameManager.pieceSelectedType = "Rock";
+                    
+                int _x = 0;
+                gameManager.pieceMoveToPosX = 2;
+                if (posX == 6)
+                {
+                    _x = 7;
+                    gameManager.pieceMoveToPosX = 5;
+                }
+                gameManager.pieceSelectedName = gameManager.gameBoardSet[_x, posY].name;
+
+/*              gameManager.playerSwitch = true;
+                gameManager.actionCompleted = false;
+                gameManager.resetAction = true;*/
                 break;
             default:
                 Debug.Log(" Error action not programmed yet ----------");
@@ -66,11 +87,39 @@ public class Piece : MonoBehaviour
 
     public static bool PositionOnBoard2(int x, int y)
     {
-        return(PositionOnBoard1(x) && PositionOnBoard1(y));
+        return (PositionOnBoard1(x) && PositionOnBoard1(y));
     }
 
     public static bool PositionOnBoard1(int x)
     {
-        return ((x>=0) && (x<=7));
+        return ((x >= 0) && (x <= 7));
+    }
+
+
+    public static void PossibleMovesDirectionTake(GameManager gameManager, GameObject gameObject,
+                                                int x, int y, bool boolValue)
+    {
+        if (PositionOnBoard2(x, y))
+            if (gameManager.gameBoardSet[x, y] != null)
+                if ((gameObject.GetComponent<Piece>().isWhite != GameObject.Find(gameManager.gameBoardSet[x, y].name).GetComponent<Piece>().isWhite))
+                {
+                    gameManager.gameBoardTake[x, y].SetActive(boolValue);
+                }
+    }
+    public static void PossibleMovesDirection(GameManager gameManager, GameObject gameObject,
+                                                int x, int y, int _x, int _y, bool boolValue)
+    {
+        x += _x;
+        y += _y;
+        while ((PositionOnBoard2(x, y)) && (gameManager.gameBoardSet[x, y] == null))
+        {
+            if (gameManager.gameBoardSet[x, y] == null)
+            {
+                gameManager.gameBoardMove[x, y].SetActive(boolValue);
+                x += _x;
+                y += _y;
+            }
+        }
+        PossibleMovesDirectionTake(gameManager, gameObject, x, y, boolValue);
     }
 }

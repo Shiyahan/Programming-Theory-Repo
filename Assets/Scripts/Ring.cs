@@ -16,6 +16,7 @@ public class Ring : MonoBehaviour
         int.TryParse(gameObject.name.Substring(2, 1), out posX);
         int.TryParse(gameObject.name.Substring(3, 1), out posY);
         string ringChar = gameObject.name.Substring(1, 1);
+        Debug.Log(ringChar);
         switch (ringChar)
         {
             case "M":
@@ -23,6 +24,9 @@ public class Ring : MonoBehaviour
                 break;
             case "T":
                 ringType = 2;
+                break;
+            case "C":
+                ringType = 3;
                 break;
             default:
                 ringType = 0;

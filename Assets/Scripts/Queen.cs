@@ -31,137 +31,20 @@ public class Queen : Piece
             ActionCarryOut(gameManager, gameObject, posX, posY);
             posX = gameManager.pieceMoveToPosX;
             posY = gameManager.pieceMoveToPosY;
+            hasMoved = true;
         }
     }
 
     private void PossibleMovesandTakes(bool boolValue)
     {
-        int x = posX;
-        int y = posY;
-        x++;
-        y++;
-        while ((x < 8) && (y < 8) && (gameManager.gameBoardSet[x, y] == null))
-        {
-            if (gameManager.gameBoardSet[x, y] == null)
-            {
-                gameManager.gameBoardMove[x, y].SetActive(boolValue);
-                x++;
-                y++;
-            }
-        }
-        PossibleTake(x, y, boolValue);
-
-        x = posX;
-        y = posY;
-        x--;
-        y++;
-        while ((x > -1) && (y < 8) && (gameManager.gameBoardSet[x, y] == null))
-        {
-            if (gameManager.gameBoardSet[x, y] == null)
-            {
-                gameManager.gameBoardMove[x, y].SetActive(boolValue);
-                x--;
-                y++;
-            }
-        }
-        PossibleTake(x, y, boolValue);
-
-        x = posX;
-        y = posY;
-        x++;
-        y--;
-        while ((x < 8) && (y > -1) && (gameManager.gameBoardSet[x, y] == null))
-        {
-            if (gameManager.gameBoardSet[x, y] == null)
-            {
-                gameManager.gameBoardMove[x, y].SetActive(boolValue);
-                x++;
-                y--;
-            }
-        }
-        PossibleTake(x, y, boolValue);
-
-        x = posX;
-        y = posY;
-        x--;
-        y--;
-        while ((x > -1) && (y > -1) && (gameManager.gameBoardSet[x, y] == null))
-        {
-            if (gameManager.gameBoardSet[x, y] == null)
-            {
-                gameManager.gameBoardMove[x, y].SetActive(boolValue);
-                x--;
-                y--;
-            }
-        }
-        PossibleTake(x, y, boolValue);
-    }
-
-    private void PossibleMovesandTakes1(bool boolValue)
-    {
-        int x = posX;
-        int y = posY;
-        x++;
-        Debug.Log("Before While" + x + " " + y);
-        while ((x < 8) && (gameManager.gameBoardSet[x, y] == null))
-        {
-            if (gameManager.gameBoardSet[x, y] == null)
-            {
-                gameManager.gameBoardMove[x, y].SetActive(boolValue);
-                x++;
-            }
-        }
-        PossibleTake(x, y, boolValue);
-
-        x = posX;
-        y = posY;
-        x--;
-        while ((x > -1) && (gameManager.gameBoardSet[x, y] == null))
-        {
-            if (gameManager.gameBoardSet[x, y] == null)
-            {
-                gameManager.gameBoardMove[x, y].SetActive(boolValue);
-                x--;
-            }
-        }
-        PossibleTake(x, y, boolValue);
-
-        x = posX;
-        y = posY;
-        y++;
-        while ((y < 8) && (gameManager.gameBoardSet[x, y] == null))
-        {
-            if (gameManager.gameBoardSet[x, y] == null)
-            {
-                gameManager.gameBoardMove[x, y].SetActive(boolValue);
-                y++;
-            }
-        }
-        PossibleTake(x, y, boolValue);
-
-        x = posX;
-        y = posY;
-        y--;
-        while ((y > -1) && (gameManager.gameBoardSet[x, y] == null))
-        {
-            if (gameManager.gameBoardSet[x, y] == null)
-            {
-                gameManager.gameBoardMove[x, y].SetActive(boolValue);
-                y--;
-            }
-        }
-        PossibleTake(x, y, boolValue);
-    }
-
-    private void PossibleTake(int x, int y, bool boolValue)
-    {
-        Debug.Log("Before While Possible Take" + x + " " + y);
-        if ((x < 8) && (x > -1) && (y < 8) && (y > -1))
-            if (gameManager.gameBoardSet[x, y] != null)
-                if ((isWhite != GameObject.Find(gameManager.gameBoardSet[x, y].name).GetComponent<Piece>().isWhite))
-                {
-                    gameManager.gameBoardTake[x, y].SetActive(boolValue);
-                }
+        PossibleMovesDirection(gameManager, gameObject, posX, posY, 1, 0, boolValue);
+        PossibleMovesDirection(gameManager, gameObject, posX, posY, -1, 0, boolValue);
+        PossibleMovesDirection(gameManager, gameObject, posX, posY, 0, 1, boolValue);
+        PossibleMovesDirection(gameManager, gameObject, posX, posY, 0, -1, boolValue);
+        PossibleMovesDirection(gameManager, gameObject, posX, posY, 1, 1, boolValue);
+        PossibleMovesDirection(gameManager, gameObject, posX, posY, -1, 1, boolValue);
+        PossibleMovesDirection(gameManager, gameObject, posX, posY, 1, -1, boolValue);
+        PossibleMovesDirection(gameManager, gameObject, posX, posY, -1, -1, boolValue);
     }
 
     private void OnMouseEnter()
@@ -171,7 +54,6 @@ public class Queen : Piece
             if (gameManager.playerIsWhite == isWhite)
             {
                 PossibleMovesandTakes(true);
-                PossibleMovesandTakes1(true);
             }
         }
     }
@@ -183,7 +65,6 @@ public class Queen : Piece
             if (gameManager.playerIsWhite == isWhite)
             {
                 PossibleMovesandTakes(false);
-                PossibleMovesandTakes1(false);
             }
         }
     }

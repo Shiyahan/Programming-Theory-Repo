@@ -911,6 +911,7 @@ MonoBehaviour:
   ringSelectPrefab: {fileID: 2932825597821420131, guid: e5bf42ab4100a304a8d572fbc7f1198f, type: 3}
   ringMovePrefab: {fileID: 1394321328370532478, guid: 5d4c4100fedf1df4a9b87512b87e9fef, type: 3}
   ringTakePrefab: {fileID: 261902465158262053, guid: 440f9ca07dabda74b9d270fe2793069f, type: 3}
+  ringCastlingPrefab: {fileID: 4228068790674882299, guid: 00e7628e42de12c4fa6966eb3ab8f1dd, type: 3}
   pawnWhitePrefab: {fileID: 5845080074349773359, guid: baf94d5a559608f4298e9bbfe55431fd, type: 3}
   pawnBlackPrefab: {fileID: 3260419527717833425, guid: 7e347afb75e083841a99ef8c7e7762a3, type: 3}
   rockWhitePrefab: {fileID: 2671660466457436261, guid: 6147747233363b4468013e2bdcab6c20, type: 3}

@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public GameObject[,] gameBoardSelect = new GameObject[8, 8];
     public GameObject[,] gameBoardMove = new GameObject[8, 8];
     public GameObject[,] gameBoardTake = new GameObject[8, 8];
+    public GameObject[,] gameBoardCastling = new GameObject[2, 2];
 
     // Player Controls
     public bool playerIsWhite = true;
@@ -33,6 +34,7 @@ public class GameManager : MonoBehaviour
     public GameObject ringSelectPrefab;
     public GameObject ringMovePrefab;
     public GameObject ringTakePrefab;
+    public GameObject ringCastlingPrefab;
     public GameObject pawnWhitePrefab;
     public GameObject pawnBlackPrefab;
     public GameObject rockWhitePrefab;
@@ -70,7 +72,7 @@ public class GameManager : MonoBehaviour
         if (gameOver)
         {
             winnerWhite = ((GameObject.Find("KingWhite4")) != null);
-            if(winnerWhite)
+            if (winnerWhite)
             {
                 winnerText.text = "White Won ...!!!";
             }
@@ -111,6 +113,7 @@ public class GameManager : MonoBehaviour
 
     private void initGameBoard()
     {
+        // Instantiate all rings
         for (int j = 0; j < 8; j++)
         {
             for (int i = 0; i < 8; i++)
@@ -124,6 +127,19 @@ public class GameManager : MonoBehaviour
                 RingSetInactive(i, j);
             }
         }
+        // Instantiate Castling Rings
+        gameBoardCastling[0, 0] = Instantiate(ringCastlingPrefab, new Vector3(BoardPosition(1), 0.02f, BoardPosition(0)), Quaternion.identity);
+        gameBoardCastling[0, 0].name = "RC10";
+        gameBoardCastling[0, 0].SetActive(false);
+        gameBoardCastling[1, 0] = Instantiate(ringCastlingPrefab, new Vector3(BoardPosition(6), 0.02f, BoardPosition(0)), Quaternion.identity);
+        gameBoardCastling[1, 0].name = "RC60";
+        gameBoardCastling[1, 0].SetActive(false);
+        gameBoardCastling[0, 1] = Instantiate(ringCastlingPrefab, new Vector3(BoardPosition(1), 0.02f, BoardPosition(7)), Quaternion.identity);
+        gameBoardCastling[0, 1].name = "RC17";
+        gameBoardCastling[0, 1].SetActive(false);
+        gameBoardCastling[1, 1] = Instantiate(ringCastlingPrefab, new Vector3(BoardPosition(6), 0.02f, BoardPosition(7)), Quaternion.identity);
+        gameBoardCastling[1, 1].name = "RC67";
+        gameBoardCastling[1, 1].SetActive(false);
 
         // Instantiate Pawns
         for (int i = 0; i < 8; i++)
@@ -198,6 +214,13 @@ public class GameManager : MonoBehaviour
             for (int i = 0; i < 8; i++)
             {
                 RingSetInactive(i, j);
+            }
+        }
+        for (int j = 0; j < 2; j++)
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                gameBoardCastling[i, j].SetActive(false);
             }
         }
     }
