@@ -188,7 +188,7 @@ public class GameManager : MonoBehaviour
         gameBoardSet[3, 0] = Instantiate(QuenWhitePrefab, new Vector3(BoardPosition(3), 0, BoardPosition(0)), Quaternion.Euler(new Vector3(-90, 0, 0)));
         gameBoardSet[3, 0].name = "QuenWhite3";
         gameBoardSet[3, 7] = Instantiate(QuenBlackPrefab, new Vector3(BoardPosition(3), 0, BoardPosition(7)), Quaternion.Euler(new Vector3(-90, 0, 180)));
-        gameBoardSet[3, 7].name = "QuenBlack3";
+        gameBoardSet[3, 7].name = "QuenBlack3"; 
 
         //Instantiate Kings
         gameBoardSet[4, 0] = Instantiate(KingWhitePrefab, new Vector3(BoardPosition(4), 0, BoardPosition(0)), Quaternion.Euler(new Vector3(-90, 0, 0)));
