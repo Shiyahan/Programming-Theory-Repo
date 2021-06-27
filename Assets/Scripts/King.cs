@@ -29,7 +29,7 @@ public class King : Piece
                                    && (gameManager.pieceSelectedName == gameObject.name)
                                    && (gameManager.pieceSelectedType == "King"))
         {
-            ActionCarryOut(gameManager, gameObject, ref posX, ref posY);
+            ActionCarryOut(gameManager, ref posX, ref posY);
             hasMoved = true;
         }
     }

@@ -29,7 +29,7 @@ public class Pawn : Piece
                     && (gameManager.pieceSelectedName == gameObject.name)
                     && (gameManager.pieceSelectedType == "Pawn"))
         {
-            ActionCarryOut(gameManager, gameObject, ref posX, ref posY);
+            ActionCarryOut(gameManager, ref posX, ref posY);
             hasMoved = true;
         }
     }
