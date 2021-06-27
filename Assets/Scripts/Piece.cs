@@ -33,7 +33,7 @@ public class Piece : MonoBehaviour
         gameObject.transform.position = new Vector3(Piece.BoardPosition(x), 0, Piece.BoardPosition(y));
     }
 
-    public static void ActionCarryOut(GameManager gameManager, GameObject gameObject, int posX, int posY)
+    public static void ActionCarryOut(GameManager gameManager, GameObject gameObject, ref int posX, ref int posY)
     {
         switch (gameManager.actionToCarry)
         {
@@ -62,10 +62,12 @@ public class Piece : MonoBehaviour
                 gameManager.gameBoardSet[posX, posY] = null;
                 posX = gameManager.pieceMoveToPosX;
                 posY = gameManager.pieceMoveToPosY;
+                gameManager.gameBoardSet[posX, posY] = gameObject;
                 MoveTo(gameObject, posX, posY);
+
                 gameManager.actionToCarry = 1;
                 gameManager.pieceSelectedType = "Rock";
-                    
+
                 int _x = 0;
                 gameManager.pieceMoveToPosX = 2;
                 if (posX == 6)
@@ -74,10 +76,6 @@ public class Piece : MonoBehaviour
                     gameManager.pieceMoveToPosX = 5;
                 }
                 gameManager.pieceSelectedName = gameManager.gameBoardSet[_x, posY].name;
-
-/*              gameManager.playerSwitch = true;
-                gameManager.actionCompleted = false;
-                gameManager.resetAction = true;*/
                 break;
             default:
                 Debug.Log(" Error action not programmed yet ----------");

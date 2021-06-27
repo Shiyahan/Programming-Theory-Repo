@@ -29,9 +29,7 @@ public class King : Piece
                                    && (gameManager.pieceSelectedName == gameObject.name)
                                    && (gameManager.pieceSelectedType == "King"))
         {
-            ActionCarryOut(gameManager, gameObject, posX, posY);
-            posX = gameManager.pieceMoveToPosX;
-            posY = gameManager.pieceMoveToPosY;
+            ActionCarryOut(gameManager, gameObject, ref posX, ref posY);
             hasMoved = true;
         }
     }

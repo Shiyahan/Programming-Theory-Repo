@@ -28,9 +28,7 @@ public class Queen : Piece
                                    && (gameManager.pieceSelectedName == gameObject.name)
                                    && (gameManager.pieceSelectedType == "Quen"))
         {
-            ActionCarryOut(gameManager, gameObject, posX, posY);
-            posX = gameManager.pieceMoveToPosX;
-            posY = gameManager.pieceMoveToPosY;
+            ActionCarryOut(gameManager, gameObject, ref posX, ref posY);
             hasMoved = true;
         }
     }
