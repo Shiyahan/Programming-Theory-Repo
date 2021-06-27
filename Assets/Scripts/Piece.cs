@@ -23,17 +23,17 @@ public class Piece : MonoBehaviour
 
     }
 
-    public static float BoardPosition(int position)
+    private float BoardPosition(int position)
     {
         return ((position + 1) * boardPositionSize - boardPositionSize * 4.5f);
     }
 
-    public static void MoveTo(GameObject gameObject, int x, int y)
+    private void MoveTo(GameObject gameObject, int x, int y)
     {
-        gameObject.transform.position = new Vector3(Piece.BoardPosition(x), 0, Piece.BoardPosition(y));
+        gameObject.transform.position = new Vector3(BoardPosition(x), 0, BoardPosition(y));
     }
 
-    public static void ActionCarryOut(GameManager gameManager, GameObject gameObject, ref int posX, ref int posY)
+    public virtual void ActionCarryOut(GameManager gameManager, ref int posX, ref int posY)
     {
         switch (gameManager.actionToCarry)
         {
@@ -83,18 +83,17 @@ public class Piece : MonoBehaviour
         }
     }
 
-    public static bool PositionOnBoard2(int x, int y)
+    private bool PositionOnBoard2(int x, int y)
     {
         return (PositionOnBoard1(x) && PositionOnBoard1(y));
     }
 
-    public static bool PositionOnBoard1(int x)
+    private bool PositionOnBoard1(int x)
     {
         return ((x >= 0) && (x <= 7));
     }
 
-
-    public static void PossibleMovesDirectionTake(GameManager gameManager, GameObject gameObject,
+    private void PossibleMovesDirectionTake(GameManager gameManager, GameObject gameObject,
                                                 int x, int y, bool boolValue)
     {
         if (PositionOnBoard2(x, y))
@@ -104,7 +103,8 @@ public class Piece : MonoBehaviour
                     gameManager.gameBoardTake[x, y].SetActive(boolValue);
                 }
     }
-    public static void PossibleMovesDirection(GameManager gameManager, GameObject gameObject,
+
+    public virtual void PossibleMovesDirection(GameManager gameManager,
                                                 int x, int y, int _x, int _y, bool boolValue)
     {
         x += _x;

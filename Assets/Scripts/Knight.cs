@@ -28,7 +28,7 @@ public class Knight : Piece
                    && (gameManager.pieceSelectedName == gameObject.name)
                    && (gameManager.pieceSelectedType == "knight"))
         {
-            ActionCarryOut(gameManager, gameObject, ref posX, ref posY);
+            ActionCarryOut(gameManager, ref posX, ref posY);
             hasMoved = true;
         }
     }

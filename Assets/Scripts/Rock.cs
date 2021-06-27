@@ -28,17 +28,17 @@ public class Rock : Piece
                            && (gameManager.pieceSelectedName == gameObject.name)
                            && (gameManager.pieceSelectedType == "Rock"))
         {
-            ActionCarryOut(gameManager, gameObject, ref posX, ref posY);
+            ActionCarryOut(gameManager, ref posX, ref posY);
             hasMoved = true;
         }
     }
 
     private void PossibleMovesandTakes(bool boolValue)
     {
-        PossibleMovesDirection(gameManager, gameObject, posX, posY, 1, 0, boolValue);
-        PossibleMovesDirection(gameManager, gameObject, posX, posY, -1, 0, boolValue);
-        PossibleMovesDirection(gameManager, gameObject, posX, posY, 0, 1, boolValue);
-        PossibleMovesDirection(gameManager, gameObject, posX, posY, 0, -1, boolValue);
+        PossibleMovesDirection(gameManager, posX, posY, 1, 0, boolValue);
+        PossibleMovesDirection(gameManager, posX, posY, -1, 0, boolValue);
+        PossibleMovesDirection(gameManager, posX, posY, 0, 1, boolValue);
+        PossibleMovesDirection(gameManager, posX, posY, 0, -1, boolValue);
     }
 
     private void OnMouseEnter()

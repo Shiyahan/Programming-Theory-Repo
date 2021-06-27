@@ -31,33 +31,33 @@ public class GameManager : MonoBehaviour
     public bool resetAction = false;
 
     // Prefabs variables
-    public GameObject ringSelectPrefab;
-    public GameObject ringMovePrefab;
-    public GameObject ringTakePrefab;
-    public GameObject ringCastlingPrefab;
-    public GameObject pawnWhitePrefab;
-    public GameObject pawnBlackPrefab;
-    public GameObject rockWhitePrefab;
-    public GameObject rockBlackPrefab;
-    public GameObject KnitWhitePrefab;
-    public GameObject KnitBlackPrefab;
-    public GameObject BshpWhitePrefab;
-    public GameObject BshpBlackPrefab;
-    public GameObject QuenWhitePrefab;
-    public GameObject QuenBlackPrefab;
-    public GameObject KingWhitePrefab;
-    public GameObject KingBlackPrefab;
+    [SerializeField] GameObject ringSelectPrefab;
+    [SerializeField] GameObject ringMovePrefab;
+    [SerializeField] GameObject ringTakePrefab;
+    [SerializeField] GameObject ringCastlingPrefab;
+    [SerializeField] GameObject pawnWhitePrefab;
+    [SerializeField] GameObject pawnBlackPrefab;
+    [SerializeField] GameObject rockWhitePrefab;
+    [SerializeField] GameObject rockBlackPrefab;
+    [SerializeField] GameObject KnitWhitePrefab;
+    [SerializeField] GameObject KnitBlackPrefab;
+    [SerializeField] GameObject BshpWhitePrefab;
+    [SerializeField] GameObject BshpBlackPrefab;
+    [SerializeField] GameObject QuenWhitePrefab;
+    [SerializeField] GameObject QuenBlackPrefab;
+    [SerializeField] GameObject KingWhitePrefab;
+    [SerializeField] GameObject KingBlackPrefab;
 
-    public TextMeshProUGUI gameOverText;
-    public TextMeshProUGUI winnerText;
-    public Button btnRestart;
-    private static float boardPositionSize = 0.25f;
+    [SerializeField] TextMeshProUGUI gameOverText;
+    [SerializeField] TextMeshProUGUI winnerText;
+    [SerializeField] Button btnRestart;
+    private float boardPositionSize = 0.25f;
 
     // variables to DEBUG
-    public bool debugFlag = false;
-    public int debugX, debugY;
+    [SerializeField] bool debugFlag = false;
+    [SerializeField] int debugX, debugY;
 
-    public bool gameOver, winnerWhite;
+    private bool gameOver, winnerWhite;
 
     // Start is called before the first frame update
     void Start()
@@ -228,5 +228,10 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void ResetAction()
+    {
+        resetAction = true;
     }
 }
