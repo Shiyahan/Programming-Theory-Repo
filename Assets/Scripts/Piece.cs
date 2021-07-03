@@ -83,12 +83,12 @@ public class Piece : MonoBehaviour
         }
     }
 
-    private bool PositionOnBoard2(int x, int y)
+    private bool PositionOnBoard(int x, int y)
     {
-        return (PositionOnBoard1(x) && PositionOnBoard1(y));
+        return ((x >= 0) && (x <= 7) && (y >= 0) && (y <= 7));
     }
 
-    private bool PositionOnBoard1(int x)
+    private bool PositionOnBoard(int x)
     {
         return ((x >= 0) && (x <= 7));
     }
@@ -96,7 +96,7 @@ public class Piece : MonoBehaviour
     private void PossibleMovesDirectionTake(GameManager gameManager, GameObject gameObject,
                                                 int x, int y, bool boolValue)
     {
-        if (PositionOnBoard2(x, y))
+        if (PositionOnBoard(x, y))
             if (gameManager.gameBoardSet[x, y] != null)
                 if ((gameObject.GetComponent<Piece>().isWhite != GameObject.Find(gameManager.gameBoardSet[x, y].name).GetComponent<Piece>().isWhite))
                 {
@@ -109,7 +109,7 @@ public class Piece : MonoBehaviour
     {
         x += _x;
         y += _y;
-        while ((PositionOnBoard2(x, y)) && (gameManager.gameBoardSet[x, y] == null))
+        while ((PositionOnBoard(x, y)) && (gameManager.gameBoardSet[x, y] == null))
         {
             if (gameManager.gameBoardSet[x, y] == null)
             {
